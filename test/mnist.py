@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import numpy as np
-from tinygrad.tensor import Tensor
-from tinygrad.utils import layer_init_uniform, fetch_mnist
-import tinygrad.optim as optim
+from weenygrad.tensor import Tensor
+from weenygrad.utils import layer_init_uniform, fetch_mnist
+import weenygrad.optim as optim
 
 from tqdm import trange
 
