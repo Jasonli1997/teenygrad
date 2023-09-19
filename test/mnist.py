@@ -52,7 +52,7 @@ for i in (t := trange(1000)):
   accuracy = (cat == Y).mean()
   
   # printing
-  loss = loss.data
+  loss = loss.data[0]
   losses.append(loss)
   accuracies.append(accuracy)
   t.set_description("loss %.2f accuracy %.2f" % (loss, accuracy))
