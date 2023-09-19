@@ -1,4 +1,5 @@
 # inspired by https://github.com/karpathy/micrograd/blob/master/micrograd/engine.py
+# essentially a numpy version of micrograd
 from functools import partialmethod
 import numpy as np
 
@@ -16,7 +17,7 @@ class Tensor:
     # internal variables used for autograd graph construction
     self._ctx = None
 
-  def __str__(self):
+  def __repr__(self):
     return "Tensor %r with grad %r" % (self.data, self.grad)
 
   def backward(self, allow_fill=True):
