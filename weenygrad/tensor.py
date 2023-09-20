@@ -57,13 +57,17 @@ class Function:
   def save_for_backward(self, *x):
     self.saved_tensors.extend(x)
 
-  # note that due to how partialmethod works, self and arg are switched
+  # **** Note ****
+  # apply is called on a Tensor so the Tensor becomes the first argument
+  # and the frozen arguments follow it 
+  # TODO: change this to a classmethod since it should do the same thing
   def apply(self, arg, *x):
-    ctx = arg(self, *x)
+    ctx = arg(self, *x)  # ctx gets instantiated right here
     ret = Tensor(arg.forward(ctx, self.data, *[t.data for t in x]))
     ret._ctx = ctx
     return ret
 
+# Add function to Tensor's attributes so it can do registered operations 
 def register(name, fxn):
   setattr(Tensor, name, partialmethod(fxn.apply, fxn))
 
