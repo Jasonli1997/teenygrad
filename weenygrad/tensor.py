@@ -34,6 +34,8 @@ class Tensor:
     assert(self.grad is not None)
 
     grads = self._ctx.backward(self._ctx, self.grad)
+    
+    # for operations such as relu
     if len(self._ctx.parents) == 1:
       grads = [grads]
     for t,g in zip(self._ctx.parents, grads):
