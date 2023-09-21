@@ -2,7 +2,7 @@ import numpy as np
 
 def layer_init_uniform(m, h):
   ret = np.random.uniform(-1., 1., size=(m,h))/np.sqrt(m*h)
-  return ret.astype(np.float32)
+  return ret.astype(np.float64)  # changed to double precision for gradcheck
 
 def fetch_mnist():
   def fetch(url):
